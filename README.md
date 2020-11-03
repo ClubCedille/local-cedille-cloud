@@ -14,6 +14,7 @@
 
   - `vagrant ssh maas`
   - `sudo su`
+  - `sudo dpkg-reconfigure maas-rack-controller` and add http://192.168.50.99:5240/MAAS/
   - `service maas-dhcpd status`
 
 - [ ] Start a node `vagrant up` and try to boot it by network with PXE

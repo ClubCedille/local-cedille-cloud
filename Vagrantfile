@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
     maas.vm.box = BOX
     
     maas.vm.hostname = "maascontroller"
-    maas.vm.network :private_network, ip: "192.168.50.99"
+    maas.vm.network :private_network, ip: "192.168.50.99", :libvirt__dhcp_enabled => false
     maas.vm.network :forwarded_port, guest: 80, host: 5240
     maas.vm.provider :libvirt do |libvirt|
       libvirt.driver = "kvm"
@@ -45,11 +45,15 @@ Vagrant.configure("2") do |config|
             libvirt.memory = NODE_MEM
             libvirt.cpus = '1'
             libvirt.storage :file, :size => '5G', :type => 'qcow2'
+            libvirt.mgmt_attach = 'false'
+            #libvirt.management_network_name = "pxe_network"
+            #libvirt.management_network_address = "192.168.50.0/24"
+            #libvirt.management_network_mode = "nat"
           end
   
-            node.vm.provision "ansible" do |ansible|
-              ansible.playbook = "ansible/node.yml"
-            end
+            # node.vm.provision "ansible" do |ansible|
+            #   ansible.playbook = "ansible/node.yml"
+            # end
       end
   end
 end
