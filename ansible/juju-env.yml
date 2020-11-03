@@ -1,0 +1,5 @@
+cedille-maas:
+  type: maas
+  maas-server: "http://localhost:8080/MAAS"
+  maas-oauth: "$APIKEY"
+  authorized-keys: ssh-rsa <ssh-rsa string>
